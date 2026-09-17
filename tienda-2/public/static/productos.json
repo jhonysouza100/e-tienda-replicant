@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "GUERLAIN L'Homme Idéal",
+    "brand": "Guerlain",
+    "description": "Una mezcla sofisticada de almendra, cuero y vainilla que crea un aroma elegante, cálido y profundamente masculino.",
+    "image": "/public/images/perfume-1.png",
+    "price": 15
+  },
+  {
+    "id": 2,
+    "name": "Paco Rabanne Invictus",
+    "brand": "Paco Rabanne",
+    "description": "Fragancia vibrante con notas marinas, ámbar gris y madera de guayaco. Inspirada en la victoria y la energía pura.",
+    "image": "/public/images/perfume-2.png",
+    "price": 15
+  },
+  {
+    "id": 3,
+    "name": "Bleu de Chanel",
+    "brand": "Chanel",
+    "description": "Una fragancia fresca y amaderada con notas de pomelo, incienso y cedro. Representa la libertad del hombre moderno.",
+    "image": "/public/images/perfume-3.png",
+    "price": 15
+  },
+  {
+    "id": 4,
+    "name": "Cacharel Amor Amor",
+    "brand": "Cacharel",
+    "description": "Perfume romántico con notas frutales de mandarina y grosella negra, mezcladas con flores exóticas. Puro amor en cada gota.",
+    "image": "/public/images/perfume-4.png",
+    "price": 15
+  },
+  {
+    "id": 5,
+    "name": "Dior Sauvage",
+    "brand": "Dior",
+    "description": "Composición fresca con bergamota de Calabria y ambroxan. Una fragancia salvaje, poderosa y libre.",
+    "image": "/public/images/perfume-5.png",
+    "price": 15
+  },
+  {
+    "id": 6,
+    "name": "Jean Paul Gaultier Le Male",
+    "brand": "Jean Paul Gaultier",
+    "description": "Aroma oriental y sensual con lavanda, menta y vainilla. Un clásico moderno que destaca por su carácter atrevido.",
+    "image": "/public/images/perfume-6.png",
+    "price": 15
+  },
+  {
+    "id": 7,
+    "name": "Carolina Herrera Good Girl",
+    "brand": "Carolina Herrera",
+    "description": "Fragancia femenina icónica con jazmín, cacao y almendra. Misteriosa y elegante, perfecta para la noche.",
+    "image": "/public/images/perfume-7.png",
+    "price": 15
+  },
+  {
+    "id": 8,
+    "name": "Versace Eros",
+    "brand": "Versace",
+    "description": "Aroma masculino vibrante con hojas de menta, manzana verde y vainilla. Inspirado en el poder y la pasión.",
+    "image": "/public/images/perfume-8.png",
+    "price": 15
+  }
+]
