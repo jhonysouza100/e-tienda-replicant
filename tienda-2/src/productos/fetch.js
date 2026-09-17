@@ -8,19 +8,26 @@ window.addEventListener('DOMContentLoaded', async function() {
     const response = await fetch('/public/static/productos.json');
     if (response.ok) {
       const data = await response.json();
-      localStorage.setItem('products', JSON.stringify(data));
+      const products = data.map(StoreCart.normalizeProduct);
+      StoreCart.saveProducts(products);
+
+      /*
+      const apiResponse = await fetch('https://restful-api-v4.vercel.app/api/v1/products?tenant_id=2');
+      const apiPayload = await apiResponse.json();
+      StoreCart.saveProducts(apiPayload.products || apiPayload);
+      */
 
       // Render product cards
       const pageContainer = document.getElementById('page-container');
       if (pageContainer && Array.isArray(data)) {
-        pageContainer.innerHTML = data.map(product => `
+        pageContainer.innerHTML = products.map(product => `
           <article class="product_card">
             <a href="/src/perfume/?q=${product.id}">
               <img src="${product.image}" alt="Perfume image ${product.id}" class="product_img">
               <p class="product_name">${product.name}</p>
             </a>
             <div class="product_footer">
-              <span class="product_price">$${product.price}</span>
+              <span class="product_price">${StoreCart.formatPrice(product.price)}</span>
               <div class="cart_button" title="Agregar al carrito" data-id=${product.id}>
                 <i class="ri-shopping-cart-2-fill"></i>
               </div>

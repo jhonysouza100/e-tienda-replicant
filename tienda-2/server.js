@@ -56,7 +56,7 @@ function resolveFilePath(pathname) {
     relativePath = decoded.replace(/^\/public/, "")
   } else {
     baseDir = SRC_DIR
-    relativePath = decoded
+    relativePath = decoded.replace(/^\/src(?=\/|$)/, "")
   }
 
   // Resuelve dentro del directorio base y previene salir de el

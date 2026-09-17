@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finalizar compra | Alabastro</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.7.0/remixicon.css">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="checkout.css">
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+</head>
+<body>
+  <header class="checkout_header">
+    <nav class="nav container">
+      <a href="/src/" class="nav_logo">ALABASTRO</a>
+      <a href="/src/carrito/" class="checkout_back"><i class="ri-arrow-left-line"></i> Volver al carrito</a>
+    </nav>
+  </header>
+  <main class="checkout container">
+    <h1>Finalizar compra</h1>
+    <p class="checkout_intro">Revisá tu pedido y completá los datos de entrega.</p>
+    <div class="checkout_grid">
+      <section aria-labelledby="order-title">
+        <h2 id="order-title">Tu pedido</h2>
+        <div id="checkout-items"></div>
+        <div class="checkout_total"><span>Subtotal</span><strong id="checkout-total">$0</strong></div>
+        <div id="shipment-panel"></div>
+      </section>
+      <section aria-labelledby="details-title">
+        <h2 id="details-title">Datos de entrega</h2>
+        <form id="shipping-form" novalidate>
+          <label>Nombre completo<input name="fullName" autocomplete="name" required></label>
+          <div class="form_row"><label>Teléfono<input name="phone" inputmode="tel" autocomplete="tel" required></label><label>DNI<input name="dni" inputmode="numeric" required></label></div>
+          <label>Email<input name="email" type="email" autocomplete="email" required></label>
+          <label>Provincia<select name="provinceCode" id="provinceCode" required><option value="">Seleccioná una provincia</option><option value="B">Buenos Aires</option><option value="C">CABA</option><option value="K">Catamarca</option><option value="H">Chaco</option><option value="U">Chubut</option><option value="X">Córdoba</option><option value="W">Corrientes</option><option value="E">Entre Ríos</option><option value="P">Formosa</option><option value="Y">Jujuy</option><option value="L">La Pampa</option><option value="F">La Rioja</option><option value="M">Mendoza</option><option value="N">Misiones</option><option value="Q">Neuquén</option><option value="R">Río Negro</option><option value="A">Salta</option><option value="J">San Juan</option><option value="D">San Luis</option><option value="Z">Santa Cruz</option><option value="S">Santa Fe</option><option value="G">Santiago del Estero</option><option value="V">Tierra del Fuego</option><option value="T">Tucumán</option></select></label>
+          <label id="agency-field" hidden>Sucursal<select id="agency" name="agency" disabled required><option value="">Seleccioná una sucursal</option></select></label>
+          <label id="postal-field" hidden>Código postal<input id="postalCode" name="postalCodeDestination" inputmode="numeric" pattern="[0-9]{4}" required></label>
+          <label id="delivery-field" hidden>Método de entrega<select id="deliveryMethod" name="deliveryMethod" disabled required><option value="">Seleccioná un método</option><option value="domicilio">Envío a domicilio</option><option value="sucursal">Retiro en sucursal</option></select></label>
+          <div id="home-fields" class="form_row" hidden><label>Calle<input name="address" id="address"></label><label>Altura<input name="streetNumber" id="streetNumber" inputmode="numeric"></label></div>
+          <p id="form-message" role="status" aria-live="polite"></p>
+          <button class="button checkout_submit" id="submit-btn" type="submit" disabled>Calcular envío <i class="ri-truck-line"></i></button>
+        </form>
+      </section>
+    </div>
+  </main>
+  <div class="payment_modal" id="payment-modal" hidden><div class="payment_modal-content"><button id="payment-close" type="button" aria-label="Cerrar"><i class="ri-close-line"></i></button><h2>Pedido preparado</h2><p>Completá el pago para finalizar la compra.</p><div id="payment-summary"></div><div id="walletBrick_container"></div></div></div>
+  <script src="../store.js"></script>
+  <script src="checkout.js"></script>
+</body>
+</html>

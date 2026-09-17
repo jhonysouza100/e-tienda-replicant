@@ -3,11 +3,17 @@ const params = new URLSearchParams(window.location.search);
 const id = params.get("q"); // ej: /src/perfume/?q=123
 
 /*=============== LOAD PRODUCT FROM LOCALSTORAGE ===============*/
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   const pageContainer = document.getElementById('page-container');
 
   // Obtener productos del localStorage
-  const products = JSON.parse(localStorage.getItem('products') || '[]');
+  let products = StoreCart.getProducts();
+
+  if (products.length === 0) {
+    const response = await fetch('/public/static/productos.json');
+    products = (await response.json()).map(StoreCart.normalizeProduct);
+    StoreCart.saveProducts(products);
+  }
 
   if (!Array.isArray(products) || products.length === 0) {
     console.error('No hay productos en localStorage');
@@ -78,13 +84,9 @@ window.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      let cart = JSON.parse(localStorage.getItem('cart') || '[]');
-
-      // Si no existe en el carrito, agregar
-      const exists = cart.some(item => String(item.id) === String(productId));
+      const exists = StoreCart.getCart().some(item => String(item.id) === String(productId));
       if (!exists) {
-        cart.push(prod);
-        localStorage.setItem('cart', JSON.stringify(cart));
+        StoreCart.addToCart(prod);
         perfumeButton.classList.add('in-cart');
         window.location.href = '/src/carrito/?q=cart';
       } else {

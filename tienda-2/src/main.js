@@ -137,10 +137,17 @@ window.addEventListener('DOMContentLoaded', async function() {
     ])
     .then(([popularData, newsData]) => {
       // Combinar ambos arrays sin repetir los id de los objetos
-      const productos = [...new Map([...popularData, ...newsData].map(item => [item.id, item])).values()];
+      const productos = [...new Map([...popularData, ...newsData].map(item => [item.id, item])).values()]
+        .map(StoreCart.normalizeProduct);
 
       // Guardar en localStorage
-      localStorage.setItem('products', JSON.stringify(productos));
+      StoreCart.saveProducts(productos);
+
+      /*
+      const apiResponse = await fetch('https://restful-api-v4.vercel.app/api/v1/products?tenant_id=2');
+      const apiProducts = await apiResponse.json();
+      StoreCart.saveProducts(apiProducts.products || apiProducts);
+      */
 
       // Renderizar POPULAR
       if (popularContainer && Array.isArray(popularData)) {
@@ -152,7 +159,7 @@ window.addEventListener('DOMContentLoaded', async function() {
                 <p class="product_name">${product.name}</p>
               </a>
               <div class="product_footer">
-                <span class="product_price">$${product.price}</span>
+                <span class="product_price">${StoreCart.formatPrice(product.price)}</span>
                 <div class="cart_button" title="Agregar al carrito" data-id=${product.id}>
                   <i class="ri-shopping-cart-2-fill"></i>
                 </div>
@@ -185,7 +192,7 @@ window.addEventListener('DOMContentLoaded', async function() {
                 <p class="product_name">${product.name}</p>
               </a>
               <div class="product_footer">
-                <span class="product_price">$${product.price}</span>
+                <span class="product_price">${StoreCart.formatPrice(product.price)}</span>
                 <div class="cart_button" title="Agregar al carrito" data-id=${product.id}>
                   <i class="ri-shopping-cart-2-fill"></i>
                 </div>
@@ -250,8 +257,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /** 🧮 Actualiza el contador visual del carrito */
   const updateCartTooltip = () => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
-    const itemCount = cart.length;
+    const itemCount = StoreCart.getCartQuantity();
 
     if (tooltip) {
       if (itemCount > 0) {
@@ -266,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /** 🎯 Marca los botones de carrito activos según el localStorage */
   const syncCartButtonStates = () => {
-    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const cart = StoreCart.getCart();
     const cartButtons = document.querySelectorAll(".cart_button");
 
     if (cartButtons.length === 0) {
@@ -296,22 +302,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const product = products.find((p) => String(p.id) === String(productId));
 
       if (product) {
-        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-
         const index = cart.findIndex((item) => String(item.id) === String(productId));
 
         if (index === -1) {
-          // 🟩 No existe → agregar al carrito
-          cart.push(product);
+          StoreCart.addToCart(product);
           cartBtn.classList.add("in-cart");
         } else {
-          // 🟥 Ya existe → eliminar del carrito
-          cart.splice(index, 1);
+          StoreCart.removeFromCart(productId);
           cartBtn.classList.remove("in-cart");
         }
-
-        // Guardar cambios
-        localStorage.setItem("cart", JSON.stringify(cart));
 
         // 🔄 Actualizar tooltip y estados
         updateCartTooltip();
