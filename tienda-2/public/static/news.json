@@ -5,7 +5,7 @@
     "brand": "Guerlain",
     "description": "Una mezcla sofisticada de almendra, cuero y vainilla que crea un aroma elegante, cálido y profundamente masculino.",
     "image": "/public/images/perfume-1.png",
-    "price": 15
+    "price": 150000
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "brand": "Paco Rabanne",
     "description": "Fragancia vibrante con notas marinas, ámbar gris y madera de guayaco. Inspirada en la victoria y la energía pura.",
     "image": "/public/images/perfume-2.png",
-    "price": 15
+    "price": 120000
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "brand": "Chanel",
     "description": "Una fragancia fresca y amaderada con notas de pomelo, incienso y cedro. Representa la libertad del hombre moderno.",
     "image": "/public/images/perfume-3.png",
-    "price": 15
+    "price": 85000
   },
   {
     "id": 4,
@@ -29,6 +29,6 @@
     "brand": "Cacharel",
     "description": "Perfume romántico con notas frutales de mandarina y grosella negra, mezcladas con flores exóticas. Puro amor en cada gota.",
     "image": "/public/images/perfume-4.png",
-    "price": 15
+    "price": 95000
   }
 ]

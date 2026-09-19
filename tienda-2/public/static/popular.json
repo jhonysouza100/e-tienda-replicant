@@ -5,7 +5,7 @@
     "brand": "Dior",
     "description": "Composición fresca con bergamota de Calabria y ambroxan. Una fragancia salvaje, poderosa y libre.",
     "image": "/public/images/perfume-5.png",
-    "price": 15
+    "price": 95000
   },
   {
     "id": 6,
@@ -13,7 +13,7 @@
     "brand": "Jean Paul Gaultier",
     "description": "Aroma oriental y sensual con lavanda, menta y vainilla. Un clásico moderno que destaca por su carácter atrevido.",
     "image": "/public/images/perfume-6.png",
-    "price": 15
+    "price": 60000
   },
   {
     "id": 7,
@@ -21,7 +21,7 @@
     "brand": "Carolina Herrera",
     "description": "Fragancia femenina icónica con jazmín, cacao y almendra. Misteriosa y elegante, perfecta para la noche.",
     "image": "/public/images/perfume-7.png",
-    "price": 15
+    "price": 75000
   },
   {
     "id": 8,
@@ -29,6 +29,6 @@
     "brand": "Versace",
     "description": "Aroma masculino vibrante con hojas de menta, manzana verde y vainilla. Inspirado en el poder y la pasión.",
     "image": "/public/images/perfume-8.png",
-    "price": 15
+    "price": 85000
   }
 ]

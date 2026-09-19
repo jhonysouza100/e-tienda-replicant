@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", () => {
         <div class="empty_cart-container container section grid">
           <p class="empty_cart-msg">El carrito está vacío.</p>
           <a href="/src/" class="empty_cart-btn button" aria-label="Volver al inicio">
-            <i class="home_button-circle"><span class="ri-arrow-left-s-line"></span></i>
+            <i class="hero_button-circle"><span class="ri-arrow-left-s-line"></span></i>
             Volver al Inicio
           </a>
         </div>`;
@@ -30,7 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
           const subtotal = product.price * product.quantity;
           return `
             <article class="product_card" data-id="${product.id}">
-              <a href="/src/perfume/?q=${product.id}">
+              <a href="/src/perfume/?id=${product.id}">
                 <img src="${product.image}" alt="${product.name}" class="product_img">
                 <p class="product_name">${product.name}</p>
               </a>

@@ -350,7 +350,7 @@ img {
   }
 }
 
-.header_form {
+.search_input {
   position: relative;
 }
 .header_input {
@@ -378,38 +378,38 @@ img {
   transform: scale(1.2);
 }
 
-/*=============== HOME ===============*/
-.home_container {
+/*=============== HERO ===============*/
+.hero_container {
   position: relative;
   display: grid;
   row-gap: 2rem;
   padding-block: 8rem 4rem;
   max-height: 980px;
 }
-.home_subtitle,
-.home_title,
-.home_button {
+.hero_subtitle,
+.hero_title,
+.hero_button {
   font-family: var(--second-font);
   color: var(--title-color);
 }
-.home_subtitle {
+.hero_subtitle {
   font-size: var(--h2-font-size);
   margin-bottom: .5rem;
 }
-.home_title {
+.hero_title {
   font-size: var(--biggest-font-size);
   margin-bottom: 1rem;
   color: var(--text-color);
 }
-.home_title span {
+.hero_title span {
   font-weight: var(--font-bold);
   color: var(--title-color);
 }
-.home_description {
+.hero_description {
   font-size: var(--small-font-size);
   margin-bottom: 2rem;
 }
-.home_button {
+.hero_button {
   display: inline-flex;
   background-color: var(--black-color);
   color: var(--white-color);
@@ -420,7 +420,7 @@ img {
   justify-content: space-between;
   font-weight: var(--font-bold);
 }
-.home_button-circle {
+.hero_button-circle {
   border: 1px solid white;
   border-radius: 50%;
   width: 30px;
@@ -429,35 +429,35 @@ img {
   align-items: center;
   justify-content: center;
 }
-.home_button i {
+.hero_button i {
   font-size: 1.5rem;
   font-weight: var(--font-regular);
 }
-.home_social {
+.hero_social {
   position: absolute;
   top: 10rem;
   right: 0;
   display: grid;
   row-gap: 1rem;
 }
-.home_social-link {
+.hero_social-link {
   display: inline-flex;
   font-size: 1.25rem;
   color: var(--title-color);
   transition: transform .4s;
 }
-.home_social-link:hover {
+.hero_social-link:hover {
   transform: translateY(-.25rem);
 }
-.home_images {
+.hero_images {
   display: grid;
   position: relative;
 }
-.home_shoe {
+.hero_shoe {
   width: 300px;
   margin-inline: auto;
 }
-.home_circle {
+.hero_circle {
   width: 250px;
   aspect-ratio: 1/1;
   background: linear-gradient(180deg, hsl(0, 0%, 100%), hsl(0, 0%, 96%));
@@ -466,7 +466,7 @@ img {
   inset: 0;
   margin: auto;
 }
-.home_bg {
+.hero_bg {
   display: none;
   max-height: 980px;
 }
@@ -863,10 +863,10 @@ img {
   .grid_page {
     grid-template-columns: repeat(1, 250px);
   }
-  .home_title {
+  .hero_title {
     font-size: 2rem;
   }
-  .home_circle {
+  .hero_circle {
     width: 220px;
   }
   .product_img {
@@ -885,11 +885,11 @@ img {
   .nav_menu {
     width: 60%;
   }
-  .home_container {
+  .hero_container {
     grid-template-columns: 350px;
     justify-content: center;
   }
-  .home_data {
+  .hero_data {
     text-align: center;
   }
   .product_img {
@@ -943,36 +943,36 @@ img {
   .home {
     position: relative;
   }
-  .home_container {
+  .hero_container {
     height: 100vh;
     grid-template-columns: 600px 430px;
     place-items: center;
     column-gap: 0;
   }
-  .home_data {
+  .hero_data {
     text-align: initial;
     position: relative;
   }
-  .home_title,
-  .home_description,
-  .home_subtitle {
+  .hero_title,
+  .hero_description,
+  .hero_subtitle {
     text-align: end;
   }
-  .home_social {
+  .hero_social {
     align-content: center;
     top: 0;
     bottom: 0;
   }
-  .home_button {
+  .hero_button {
     position: absolute;
     bottom: -50%;
     right: -50%;
     transform: translateX(-50%);
   }
-  .home_images {
+  .hero_images {
     display: none;
   }
-  .home_bg {
+  .hero_bg {
     position: absolute;
     top: 0;
     right: 0;
@@ -984,7 +984,7 @@ img {
     pointer-events: none;
     z-index: -1;
   }
-  .home_bg-img {
+  .hero_bg-img {
     width: 400px;
     height: 100%;
     object-fit: cover;
@@ -1039,23 +1039,23 @@ img {
   .section {
     padding-block: 7rem 2rem;
   }
-  .home_title {
+  .hero_title {
     margin-bottom: 1.25rem;
   }
-  .home_description {
+  .hero_description {
     font-size: var(--normal-font-size);
     margin-bottom: 3rem;
   }
-  .home_button {
+  .hero_button {
     bottom: -3.5rem;
   }
-  .home_shoe {
+  .hero_shoe {
     width: 600px;
   }
-  .home_circle {
+  .hero_circle {
     width: 500px;
   }
-  .home_bg-img {
+  .hero_bg-img {
     width: 550px;
   }
   .footer_content {
@@ -1080,14 +1080,14 @@ img {
 }
 
 @media screen and (min-width: 1248px) {
-  .home_container {
+  .hero_container {
     column-gap: 2rem;
   }
-  .home_social {
+  .hero_social {
     right: -3rem;
     row-gap: 2rem;
   }
-  .home_social-link {
+  .hero_social-link {
     font-size: 1.5rem;
     color: var(--white-color);
   }

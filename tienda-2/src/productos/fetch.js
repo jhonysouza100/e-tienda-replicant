@@ -1,6 +1,6 @@
 // Obtener los parámetros de la URL
 const params = new URLSearchParams(window.location.search);
-const query = params.get("q");
+const query = params.get("topic");
 
 /*=============== LOAD PRODUCTS ===============*/
 window.addEventListener('DOMContentLoaded', async function() {
@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', async function() {
       if (pageContainer && Array.isArray(data)) {
         pageContainer.innerHTML = products.map(product => `
           <article class="product_card">
-            <a href="/src/perfume/?q=${product.id}">
+            <a href="/src/perfume/?id=${product.id}">
               <img src="${product.image}" alt="Perfume image ${product.id}" class="product_img">
               <p class="product_name">${product.name}</p>
             </a>

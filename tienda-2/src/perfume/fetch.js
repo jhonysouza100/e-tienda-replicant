@@ -1,6 +1,6 @@
 // Obtener los parámetros de la URL
 const params = new URLSearchParams(window.location.search);
-const id = params.get("q"); // ej: /src/perfume/?q=123
+const id = params.get("id"); // ej: /src/perfume/?id=123
 
 /*=============== LOAD PRODUCT FROM LOCALSTORAGE ===============*/
 window.addEventListener('DOMContentLoaded', async () => {

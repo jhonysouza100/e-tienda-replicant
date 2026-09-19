@@ -138,13 +138,13 @@
               <a href="/src" class="nav_link">Inicio</a>
             </li>
             <li class="nav_item">
-              <a href="/src/productos/?q=men&page=1" class="nav_link">Hombre</a>
+              <a href="/src/productos/?topic=men&page=1" class="nav_link">Hombre</a>
             </li>
             <li class="nav_item">
-              <a href="/src/productos/?q=women&page=1" class="nav_link">Mujer</a>
+              <a href="/src/productos/?topic=women&page=1" class="nav_link">Mujer</a>
             </li>
             <li class="nav_item">
-              <a href="/src/productos/?q=popular&page=1" class="nav_link">Popular</a>
+              <a href="/src/productos/?topic=popular&page=1" class="nav_link">Popular</a>
             </li>
           </ul>
           <!-- Close button -->
@@ -153,7 +153,7 @@
            </div>
         </div>
 
-        <form class="header_form" id="header-form">
+        <form class="search_input" id="search-input">
           <input type="text" class="header_input" id="header-input" placeholder="Buscar perfume">
           <button type="submit" class="header_button" title="Buscar">
             <i class="ri-search-line"></i>
@@ -169,63 +169,63 @@
 
     <!--==================== MAIN ====================-->
     <main class="main">
-      <!--==================== HOME ====================-->
+      <!--==================== HERO ====================-->
       <section class="home" id="home">
-        <div class="home_container container">
-          <div class="home_data">
-            <h2 class="home_subtitle">ALABASTRO<h2/>
-            <h1 class="home_title">
+        <div class="hero_container container">
+          <div class="hero_data">
+            <h2 class="hero_subtitle">ALABASTRO<h2/>
+            <h1 class="hero_title">
               AROMAS
               QUE <br>
               <span>DESTACAN</span>
             </h1>
-            <p class="home_description">
+            <p class="hero_description">
               Tu tienda online de perfumes originales en Argentina. Descubrí fragancias exclusivas para mujer y hombre, con envíos rápidos a todo el país.
             </p>
-            <a href="#popular" class="home_button button">
+            <a href="#popular" class="hero_button button">
               Ver Novedades
-              <i class="home_button-circle">
+              <i class="hero_button-circle">
                 <span class="ri-arrow-right-s-line"></span>
               </i>
             </a>
           </div>
-          <div class="home_images">
-            <div class="home_circle"></div>
-            <div class="home_swiper swiper">
+          <div class="hero_images">
+            <div class="hero_circle"></div>
+            <div class="hero_swiper swiper">
               <div class="swiper-wrapper">
-                <article class="home_article swiper-slide">
-                  <img src="/public/images/perfume-2.png" alt="Shoe image" class="home_shoe">
+                <article class="hero_article swiper-slide">
+                  <img src="/public/images/perfume-2.png" alt="Shoe image" class="hero_shoe">
                 </article>
-                <article class="home_article swiper-slide">
-                  <img src="/public/images/perfume-1.png" alt="Shoe image" class="home_shoe">
+                <article class="hero_article swiper-slide">
+                  <img src="/public/images/perfume-1.png" alt="Shoe image" class="hero_shoe">
                 </article>
-                <article class="home_article swiper-slide">
-                  <img src="/public/images/perfume-3.png" alt="Shoe image" class="home_shoe">
+                <article class="hero_article swiper-slide">
+                  <img src="/public/images/perfume-3.png" alt="Shoe image" class="hero_shoe">
                 </article>
-                <article class="home_article swiper-slide">
-                  <img src="/public/images/perfume-4.png" alt="Shoe image" class="home_shoe">
+                <article class="hero_article swiper-slide">
+                  <img src="/public/images/perfume-4.png" alt="Shoe image" class="hero_shoe">
                 </article>
-                <article class="home_article swiper-slide">
-                  <img src="/public/images/perfume-5.png" alt="Shoe image" class="home_shoe">
+                <article class="hero_article swiper-slide">
+                  <img src="/public/images/perfume-5.png" alt="Shoe image" class="hero_shoe">
                 </article>
-                <article class="home_article swiper-slide">
-                  <img src="/public/images/perfume-6.png" alt="Shoe image" class="home_shoe">
+                <article class="hero_article swiper-slide">
+                  <img src="/public/images/perfume-6.png" alt="Shoe image" class="hero_shoe">
                 </article>
-                <article class="home_article swiper-slide">
-                  <img src="/public/images/perfume-7.png" alt="Shoe image" class="home_shoe">
+                <article class="hero_article swiper-slide">
+                  <img src="/public/images/perfume-7.png" alt="Shoe image" class="hero_shoe">
                 </article>
               </div>
             </div>
             <div class="swiper-pagination"></div>
           </div>
-          <!-- <div class="home_social">
-            <a class="home_social-link" href="#" target="_blank"><i class="ri-facebook-circle-fill"></i></a>
-            <a class="home_social-link" href="#" target="_blank"><i class="ri-instagram-fill"></i></a>
-            <a class="home_social-link" href="#" target="_blank"><i class="ri-youtube-fill"></i></a>
+          <!-- <div class="hero_social">
+            <a class="hero_social-link" href="#" target="_blank"><i class="ri-facebook-circle-fill"></i></a>
+            <a class="hero_social-link" href="#" target="_blank"><i class="ri-instagram-fill"></i></a>
+            <a class="hero_social-link" href="#" target="_blank"><i class="ri-youtube-fill"></i></a>
           </div> -->
         </div>
-        <div class="home_bg">
-          <img class="home_bg-img" src="/public/images/hero-1.webp" alt="Home background image">
+        <div class="hero_bg">
+          <img class="hero_bg-img" src="/public/images/hero-1.webp" alt="Home background image">
         </div>
       </section>
 
@@ -277,19 +277,19 @@
           <div class="promo_card-large">
             <div class="promo_card">
               <img src="/public/images/hero-1.webp" alt="Promo image">
-              <a href="/src/productos/?q=women" class="promo_btn">Mujer</a>
+              <a href="/src/productos/?topic=women" class="promo_btn">Mujer</a>
             </div>
           </div>
           <div class="promo_card-normal">
             <div class="promo_card">
               <img src="/public/images/hero-2.jpg" alt="Promo image">
-              <a href="/src/productos/?q=popular" class="promo_btn">Popular</a>
+              <a href="/src/productos/?topic=popular" class="promo_btn">Popular</a>
             </div>
           </div>
           <div class="promo_card-normal">
             <div class="promo_card">
               <img src="/public/images/hero-3.webp" alt="Promo image">
-              <a href="/src/productos/?q=men" class="promo_btn last-child">Hombre</a>
+              <a href="/src/productos/?topic=men" class="promo_btn last-child">Hombre</a>
             </div>
           </div>
         </div>
@@ -413,7 +413,7 @@
         class="whatsapp_button">
         <img src="/public/images/whatsapp.svg" alt="whatsapp button" loading="lazy">
       </a>
-      <a href="/src/carrito/?q=cart" class="main_cart-btn">
+      <a href="/src/checkout/" class="main_cart-btn">
         <span class="button_tooltip" id="button-tooltip">
           <!-- Inject by js -->
         </span>
@@ -424,6 +424,9 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
     <!--=============== SCROLLREVEAL ===============-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollReveal.js/4.0.9/scrollreveal.min.js" integrity="sha512-Kr+RPfLjQ71E0cJ9nseJ6jwTrnmMnuSPnnsVQQ/ZYYCjOHKfJcWj8ILICXnvf9A7ZQChNzIbr9x/ZAxA6xAZlQ==" crossorigin="anonymous" referrerpolicy="no-referrer" ></script>
+
+    <!--=============== LOAD DATA JS ===============-->
+    <script src="fetch.js"></script>
 
     <!--=============== MAIN JS ===============-->
     <script src="store.js"></script>
