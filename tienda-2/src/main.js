@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", async function () {
+  StoreCart.renderCartTooltip();
   const syncCartUI = () => {
     StoreCart.renderCartTooltip();
     document.querySelectorAll("[data-product-card]").forEach((card) => {

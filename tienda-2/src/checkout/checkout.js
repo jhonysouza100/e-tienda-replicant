@@ -46,7 +46,7 @@ window.addEventListener("DOMContentLoaded", () => {
         </div>
         <div>
           <strong>${StoreCart.formatPrice(item.price * item.quantity)}</strong>
-          <button type="button" data-action="remove" data-id="${item.id}" aria-label="Eliminar ${item.name}">
+          <button class="button" type="button" data-action="toggle" data-id="${item.id}" aria-label="Eliminar ${item.name}">
             <i class="ri-close-line" aria-hidden="true"></i>
           </button>
         </div>
