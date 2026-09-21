@@ -19,6 +19,52 @@
 
   const formatPrice = (value) => `$${parsePrice(value).toLocaleString("es-AR")}`;
 
+  const escapeHTML = (value) => String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+  const renderCartTooltip = (root = document) => {
+    const quantity = getCartQuantity();
+    root.querySelectorAll("[data-cart-tooltip], #button-tooltip").forEach((tooltip) => {
+      tooltip.textContent = quantity;
+      tooltip.hidden = quantity === 0;
+      tooltip.setAttribute("aria-label", `${quantity} productos en el carrito`);
+    });
+    return quantity;
+  };
+
+  const renderProductCard = (product) => {
+    const normalized = normalizeProduct(product);
+    const item = getCart().find((cartItem) => String(cartItem.id) === String(normalized.id));
+    const quantity = item?.quantity || 0;
+    const isInCart = Boolean(item);
+    const canIncrease = !item || quantity + normalized.minCant <= normalized.stock;
+    const canDecrease = quantity > normalized.minCant;
+
+    return `
+      <article class="product_card" data-product-card data-id="${escapeHTML(normalized.id)}">
+        <a href="/src/perfume/?id=${encodeURIComponent(normalized.id)}">
+          <img src="${escapeHTML(normalized.image)}" alt="${escapeHTML(normalized.name)}" class="product_img">
+          <p class="product_name">${escapeHTML(normalized.name)}</p>
+        </a>
+        <div class="product_footer">
+          <span class="product_price">${formatPrice(normalized.price)}</span>
+          <div class="product_card-controls" data-cart-controls>
+            <button class="button cart_quantity-btn" type="button" data-action="decrease" data-id="${escapeHTML(normalized.id)}" aria-label="Disminuir cantidad de ${escapeHTML(normalized.name)}" title="Disminuir cantidad de ${escapeHTML(normalized.name)}" ${!canDecrease ? "disabled" : ""}>-</button>
+            <span data-cart-quantity>${quantity}</span>
+            <button class="button cart_quantity-btn" type="button" data-action="increase" data-id="${escapeHTML(normalized.id)}" aria-label="Aumentar cantidad de ${escapeHTML(normalized.name)}" title="Aumentar cantidad de ${escapeHTML(normalized.name)}" ${!canIncrease ? "disabled" : ""}>+</button>
+            <button class="button" type="button" data-action="toggle" data-id="${escapeHTML(normalized.id)}" aria-label="${isInCart ? "Eliminar" : "Agregar"} aria-label="Agregar/Quitar ${escapeHTML(normalized.name)}" title="Agregar/Quitar ${escapeHTML(normalized.name)}" ${escapeHTML(normalized.name)}" aria-pressed="${isInCart}">
+              <i class="${isInCart ? "ri-close-line" : "ri-shopping-cart-2-line"}" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </article>`;
+  };
+  
+
   const readArray = (key) => {
     try {
       const value = JSON.parse(localStorage.getItem(key) || "[]");
@@ -26,6 +72,10 @@
     } catch {
       return [];
     }
+  };
+
+  const notifyCartChange = () => {
+    if (typeof window !== "undefined") window.dispatchEvent(new Event("cartchange"));
   };
 
   const normalizeProduct = (product = {}) => ({
@@ -56,10 +106,10 @@
   };
 
   const getCart = () => readArray(CART_KEY).map(normalizeCartItem);
-  const saveCart = (cart) => localStorage.setItem(
-    CART_KEY,
-    JSON.stringify(cart.map(normalizeCartItem)),
-  );
+  const saveCart = (cart) => {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart.map(normalizeCartItem)));
+    notifyCartChange();
+  };
   const getProducts = () => readArray(PRODUCTS_KEY).map(normalizeProduct);
   const saveProducts = (products) => localStorage.setItem(
     PRODUCTS_KEY,
@@ -119,5 +169,7 @@
     updateCartItemQuantity,
     getCartTotal,
     getCartQuantity,
+    renderCartTooltip,
+    renderProductCard,
   };
 })();

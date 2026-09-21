@@ -41,23 +41,7 @@ window.addEventListener("DOMContentLoaded", async function () {
         // Renderizar POPULAR
         if (popularContainer && Array.isArray(popularData)) {
           popularContainer.innerHTML = popularData
-            .map(
-              (product) =>
-                `<div class="swiper-slide">
-            <article class="product_card">
-              <a href="/src/perfume/?id=${product.id}">
-                <img src="${product.image}" alt="${product.name}" class="product_img">
-                <p class="product_name">${product.name}</p>
-              </a>
-              <div class="product_footer">
-                <span class="product_price">${StoreCart.formatPrice(product.price)}</span>
-                <div class="cart_button" title="Agregar al carrito" data-id=${product.id}>
-                  <i class="ri-shopping-cart-2-fill"></i>
-                </div>
-              </div>
-            </article>
-          </div>`,
-            )
+            .map((product) => `<div class="swiper-slide">${StoreCart.renderProductCard(product)}</div>`)
             .join("");
 
           new Swiper(".popular_swiper", {
@@ -77,23 +61,7 @@ window.addEventListener("DOMContentLoaded", async function () {
         // Renderizar NEWS
         if (newsContainer && Array.isArray(newsData)) {
           newsContainer.innerHTML = newsData
-            .map(
-              (product) =>
-                `<div class="swiper-slide">
-            <article class="product_card">
-              <a href="/src/perfume/?id=${product.id}">
-                <img src="${product.image}" alt="${product.name}" class="product_img">
-                <p class="product_name">${product.name}</p>
-              </a>
-              <div class="product_footer">
-                <span class="product_price">${StoreCart.formatPrice(product.price)}</span>
-                <div class="cart_button" title="Agregar al carrito" data-id=${product.id}>
-                  <i class="ri-shopping-cart-2-fill"></i>
-                </div>
-              </div>
-            </article>
-          </div>`,
-            )
+            .map((product) => `<div class="swiper-slide">${StoreCart.renderProductCard(product)}</div>`)
             .join("");
 
           new Swiper(".news_swiper", {

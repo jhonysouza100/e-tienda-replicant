@@ -34,21 +34,32 @@ window.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  // Renderizar componente con los datos del producto
+  const normalized = StoreCart.normalizeProduct(product);
+  const item = StoreCart.getCart().find((cartItem) => String(cartItem.id) === String(normalized.id));
+  const quantity = item?.quantity || 0;
+  const canIncrease = !item || quantity + normalized.minCant <= normalized.stock;
+  const canDecrease = quantity > normalized.minCant;
+
+  // Renderizar el componente con los datos del producto
   if (pageContainer) {
     pageContainer.innerHTML = `
-      <div class="perfume_data">
-        <h2 class="perfume_subtitle">${product.brand || 'Marca desconocida'}</h2>
+      <div class="perfume_data" data-product-card data-id="${normalized.id}">
+        <h2 class="perfume_subtitle">${normalized.brand || 'Marca desconocida'}</h2>
         <h1 class="perfume_title">
           ${product.name || 'Sin nombre'}
         </h1>
         <p class="perfume_description">
           ${product.description || 'Sin descripción disponible.'}
         </p>
-        <a href="/src/carrito" class="perfume_button button" data-id="${product.id}"  id="perfume-button" title="Agregar al carrito">
-          COMPRAR AHORA
-          <i class="ri-shopping-cart-line"></i>
-        </a>
+        <div class="product_card-controls" data-cart-controls>
+          <button class="button cart_quantity-btn" type="button" data-action="decrease" data-id="${normalized.id}" aria-label="Disminuir cantidad de ${normalized.name}" title="Disminuir cantidad de ${normalized.name}" ${!canDecrease ? "disabled" : ""}>-</button>
+          <span data-cart-quantity>${quantity}</span>
+          <button class="button cart_quantity-btn" type="button" data-action="increase" data-id="${normalized.id}" aria-label="Aumentar cantidad de ${normalized.name}" title="Aumentar cantidad de ${normalized.name}" ${!canIncrease ? "disabled" : ""}>+</button>
+          <button type="button" class="perfume_button button" data-id="${product.id}" id="perfume-button" title="Agregar al carrito">
+            COMPRAR AHORA
+            <i class="ri-shopping-cart-line"></i>
+          </button>
+          </div>
       </div>
 
       <div class="perfume_images">
@@ -88,10 +99,9 @@ window.addEventListener('DOMContentLoaded', async () => {
       if (!exists) {
         StoreCart.addToCart(prod);
         perfumeButton.classList.add('in-cart');
-        window.location.href = '/src/carrito/?q=cart';
+        window.location.href = '/src/checkout/';
       } else {
-        // Si el producto ya esta en el carrito, solo redirecciona
-        window.location.href = '/src/carrito/?q=cart';
+        window.location.href = '/src/checkout/';
       }
     });
   }

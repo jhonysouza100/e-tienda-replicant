@@ -1,4 +1,46 @@
 window.addEventListener("DOMContentLoaded", async function () {
+  const syncCartUI = () => {
+    StoreCart.renderCartTooltip();
+    document.querySelectorAll("[data-product-card]").forEach((card) => {
+      const id = card.dataset.id;
+      const product = StoreCart.getProducts().find((item) => String(item.id) === String(id));
+      const cartItem = StoreCart.getCart().find((item) => String(item.id) === String(id));
+      if (!product) return;
+      const quantity = cartItem?.quantity || 0;
+      const toggle = card.querySelector('[data-action="toggle"]');
+      const decrease = card.querySelector('[data-action="decrease"]');
+      const increase = card.querySelector('[data-action="increase"]');
+      const quantityEl = card.querySelector("[data-cart-quantity]");
+      if (toggle) {
+        toggle.innerHTML = `<i class="${cartItem ? "ri-close-line" : "ri-shopping-cart-2-line"}" aria-hidden="true"></i>`;
+        toggle.setAttribute("aria-label", `${cartItem ? "Eliminar" : "Agregar"} ${product.name}`);
+        toggle.setAttribute("aria-pressed", String(Boolean(cartItem)));
+      }
+      if (quantityEl) quantityEl.textContent = quantity;
+      if (decrease) decrease.disabled = !cartItem || quantity <= product.minCant;
+      if (increase) increase.disabled = Boolean(cartItem && quantity + product.minCant > product.stock);
+    });
+  };
+
+  // ADD/REMOVE ITEM FROM CART
+  document.addEventListener("click", (event) => {
+    const control = event.target.closest("[data-action]");
+    if (!control) return;
+    const product = StoreCart.getProducts().find((item) => String(item.id) === String(control.dataset.id));
+    if (!product) return;
+    event.preventDefault();
+    if (control.dataset.action === "toggle") {
+      const isInCart = StoreCart.getCart().some((item) => String(item.id) === String(product.id));
+      isInCart ? StoreCart.removeFromCart(product.id) : StoreCart.addToCart(product);
+    } else if (control.dataset.action === "increase") {
+      StoreCart.updateCartItemQuantity(product.id, 1);
+    } else if (control.dataset.action === "decrease") {
+      StoreCart.updateCartItemQuantity(product.id, -1);
+    }
+  });
+
+  window.addEventListener("cartchange", syncCartUI);
+
   /*=============== SHOW MENU ===============*/
   const navMenu = document.getElementById("nav-menu"),
     navToggle = document.getElementById("nav-toggle"),

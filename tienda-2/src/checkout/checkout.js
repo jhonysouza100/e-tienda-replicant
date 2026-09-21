@@ -28,17 +28,33 @@ window.addEventListener("DOMContentLoaded", () => {
     const cart = StoreCart.getCart();
     if (!cart.length) {
       itemsEl.innerHTML = "<p>Tu carrito está vacío. <a href='/src/'>Volver a la tienda</a></p>";
+      totalEl.textContent = StoreCart.formatPrice(0);
       submitEl.disabled = true;
       return;
     }
     itemsEl.innerHTML = cart.map((item) => `
-      <article class="checkout_item">
+      <article class="checkout_item" data-product-card data-id="${item.id}">
         <img src="${item.image}" alt="${item.name}">
-        <div><p>${item.name}</p><small>${item.quantity} x ${StoreCart.formatPrice(item.price)}</small></div>
-        <strong>${StoreCart.formatPrice(item.price * item.quantity)}</strong>
+        <div>
+          <p>${item.name}</p>
+          <small>${StoreCart.formatPrice(item.price)} c/u</small>
+          <div class="checkout_quantity" data-cart-controls aria-label="Cantidad de ${item.name}">
+            <button type="button" data-action="decrease" data-id="${item.id}" ${item.quantity <= item.minCant ? "disabled" : ""} aria-label="Disminuir cantidad">-</button>
+            <span>${item.quantity}</span>
+            <button type="button" data-action="increase" data-id="${item.id}" ${item.quantity + item.minCant > item.stock ? "disabled" : ""} aria-label="Aumentar cantidad">+</button>
+          </div>
+        </div>
+        <div>
+          <strong>${StoreCart.formatPrice(item.price * item.quantity)}</strong>
+          <button type="button" data-action="remove" data-id="${item.id}" aria-label="Eliminar ${item.name}">
+            <i class="ri-close-line" aria-hidden="true"></i>
+          </button>
+        </div>
       </article>`).join("");
     totalEl.textContent = StoreCart.formatPrice(StoreCart.getCartTotal());
   };
+
+  window.addEventListener("cartchange", renderCart);
 
   const selectedAgency = () => agencies[Number(agencyEl.value)] || null;
   const resetDelivery = () => {

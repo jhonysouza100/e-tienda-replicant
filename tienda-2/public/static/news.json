@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "stock": 100,
     "name": "GUERLAIN L'Homme Idéal",
     "brand": "Guerlain",
     "description": "Una mezcla sofisticada de almendra, cuero y vainilla que crea un aroma elegante, cálido y profundamente masculino.",
@@ -9,6 +10,7 @@
   },
   {
     "id": 2,
+    "stock": 100,
     "name": "Paco Rabanne Invictus",
     "brand": "Paco Rabanne",
     "description": "Fragancia vibrante con notas marinas, ámbar gris y madera de guayaco. Inspirada en la victoria y la energía pura.",
@@ -17,6 +19,7 @@
   },
   {
     "id": 3,
+    "stock": 100,
     "name": "Bleu de Chanel",
     "brand": "Chanel",
     "description": "Una fragancia fresca y amaderada con notas de pomelo, incienso y cedro. Representa la libertad del hombre moderno.",
@@ -25,6 +28,7 @@
   },
   {
     "id": 4,
+    "stock": 100,
     "name": "Cacharel Amor Amor",
     "brand": "Cacharel",
     "description": "Perfume romántico con notas frutales de mandarina y grosella negra, mezcladas con flores exóticas. Puro amor en cada gota.",

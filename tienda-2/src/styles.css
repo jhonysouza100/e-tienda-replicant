@@ -155,26 +155,19 @@ img {
 .button {
   position: relative;
   overflow: hidden;
-  background-color: transparent;
-  color: #fff;
-  padding-block: 1.25rem;
-  padding-inline: 1.5rem;
-  border-radius: 0.375rem;
+  padding-block: .5rem;
+  padding-inline: .5rem;
+  border-radius: 0.5rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   column-gap: 0.5rem;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
   cursor: pointer;
+  filter: contrast(1.0);
+  transition: all .4s linear;
 }
-.button i {
-  transition-property: transform;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: .4s;
-}
-.button:hover i {
-  transform: translateX(.25rem);
+.button:hover {
+  filter: contrast(0.9);
 }
 .avatar {
   width: 3rem;
@@ -539,40 +532,26 @@ img {
   align-items: center;
   color: var(--title-color);
 }
-.cart_button {
-  cursor: pointer;
-  padding: .25rem;
-  display: grid;
-  place-content: center;
-  border-radius: .25rem;
-}
-.cart_button.in-cart {
-  background-color: var(--black-color);
-  color: var(--white-color);
-  transition: 0.2s ease;
+.product_card-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: .5rem;
 }
 
 /*=============== CART PAGE ===============*/
 .cart_item-footer {
   align-items: flex-end;
 }
-.cart_quantity {
-  display: flex;
-  align-items: center;
-  gap: .5rem;
-  margin-top: .5rem;
-}
 .cart_quantity-btn {
   width: 1.6rem;
   height: 1.6rem;
-  border: 1px solid var(--black-color-light);
-  border-radius: .25rem;
-  background: var(--white-color);
+  border-radius: 50%;
   color: var(--title-color);
+  font-size: var(--h2-font-size);
   cursor: pointer;
 }
 .cart_quantity-btn:disabled {
-  opacity: .4;
   cursor: not-allowed;
 }
 .cart_total {
@@ -782,18 +761,22 @@ img {
 /* Button tooltip */
 .button_tooltip {
   position: absolute;
-  top: -.5rem;
-  right: -.5rem;
   display: grid;
   place-content: center;
-}
-.tooltip-active {
-  width: 1.25rem;
-  height: 1.25rem;
   border-radius: 50%;
-  background-color: red;
+  background-color: var(--black-color);
   color: var(--white-color);
   font-size: var(--small-font-size);
+  font-weight: var(--font-bold);
+  top: -.5rem;
+  right: -.5rem;
+  width: 1.25rem;
+  aspect-ratio: 1 / 1;
+  transform: scale(1);
+  transition: transform .2s linear;
+}
+.button_tooltip[hidden] {
+  transform: scale(0);
 }
 
 /*=============== MODIFIERS & UTILITIES ===============*/

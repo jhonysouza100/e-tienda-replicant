@@ -10,6 +10,10 @@
 .checkout_item img { width: 4rem; height: 4rem; object-fit: contain; }
 .checkout_item p, .checkout_item small { display: block; }
 .checkout_item strong { color: var(--title-color); }
+.checkout_quantity { display: flex; align-items: center; gap: .5rem; margin-top: .5rem; }
+.checkout_quantity button, .checkout_item [data-action="remove"] { border: 1px solid #ccc; border-radius: .3rem; background: var(--body-color); color: var(--title-color); cursor: pointer; padding: .25rem .5rem; }
+.checkout_quantity button:disabled { cursor: not-allowed; opacity: .45; }
+.checkout_item [data-action="remove"] { display: block; margin-top: .5rem; font-size: .75rem; }
 .checkout_total { display: flex; justify-content: space-between; gap: 1rem; padding-top: 1.25rem; color: var(--title-color); font-size: 1.1rem; }
 #shipment-panel { margin-top: 1.5rem; }
 .shipment_form { display: flex; gap: .5rem; margin-bottom: 1rem; }

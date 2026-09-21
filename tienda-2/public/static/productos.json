@@ -1,6 +1,7 @@
 [
   {
     "id": 1,
+    "stock": 100,
     "name": "GUERLAIN L'Homme Idéal",
     "brand": "Guerlain",
     "description": "Una mezcla sofisticada de almendra, cuero y vainilla que crea un aroma elegante, cálido y profundamente masculino.",
@@ -9,6 +10,7 @@
   },
   {
     "id": 2,
+    "stock": 100,
     "name": "Paco Rabanne Invictus",
     "brand": "Paco Rabanne",
     "description": "Fragancia vibrante con notas marinas, ámbar gris y madera de guayaco. Inspirada en la victoria y la energía pura.",
@@ -17,6 +19,7 @@
   },
   {
     "id": 3,
+    "stock": 100,
     "name": "Bleu de Chanel",
     "brand": "Chanel",
     "description": "Una fragancia fresca y amaderada con notas de pomelo, incienso y cedro. Representa la libertad del hombre moderno.",
@@ -25,6 +28,7 @@
   },
   {
     "id": 4,
+    "stock": 100,
     "name": "Cacharel Amor Amor",
     "brand": "Cacharel",
     "description": "Perfume romántico con notas frutales de mandarina y grosella negra, mezcladas con flores exóticas. Puro amor en cada gota.",
@@ -33,6 +37,7 @@
   },
   {
     "id": 5,
+    "stock": 100,
     "name": "Dior Sauvage",
     "brand": "Dior",
     "description": "Composición fresca con bergamota de Calabria y ambroxan. Una fragancia salvaje, poderosa y libre.",
@@ -41,6 +46,7 @@
   },
   {
     "id": 6,
+    "stock": 100,
     "name": "Jean Paul Gaultier Le Male",
     "brand": "Jean Paul Gaultier",
     "description": "Aroma oriental y sensual con lavanda, menta y vainilla. Un clásico moderno que destaca por su carácter atrevido.",
@@ -49,6 +55,7 @@
   },
   {
     "id": 7,
+    "stock": 100,
     "name": "Carolina Herrera Good Girl",
     "brand": "Carolina Herrera",
     "description": "Fragancia femenina icónica con jazmín, cacao y almendra. Misteriosa y elegante, perfecta para la noche.",
@@ -57,6 +64,7 @@
   },
   {
     "id": 8,
+    "stock": 100,
     "name": "Versace Eros",
     "brand": "Versace",
     "description": "Aroma masculino vibrante con hojas de menta, manzana verde y vainilla. Inspirado en el poder y la pasión.",
