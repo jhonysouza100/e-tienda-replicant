@@ -29,12 +29,12 @@ window.addEventListener("DOMContentLoaded", async function () {
     if (!control) return;
     const product = StoreCart.getProducts().find((item) => String(item.id) === String(control.dataset.id));
     if (!product) return;
+    const isInCart = StoreCart.getCart().some((item) => String(item.id) === String(product.id));
     event.preventDefault();
     if (control.dataset.action === "toggle") {
-      const isInCart = StoreCart.getCart().some((item) => String(item.id) === String(product.id));
       isInCart ? StoreCart.removeFromCart(product.id) : StoreCart.addToCart(product);
     } else if (control.dataset.action === "increase") {
-      StoreCart.updateCartItemQuantity(product.id, 1);
+      isInCart ? StoreCart.updateCartItemQuantity(product.id, 1) : StoreCart.addToCart(product); 
     } else if (control.dataset.action === "decrease") {
       StoreCart.updateCartItemQuantity(product.id, -1);
     }
@@ -124,7 +124,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     }
   } else {
     const firstLink = document.querySelector(".nav_menu a");
-    if (firstLink) {
+    if (firstLink && window.location.pathname === "/src") {
       firstLink.classList.add("active-link");
     }
   }
