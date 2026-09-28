@@ -57,7 +57,7 @@
             <span data-cart-quantity>${quantity}</span>
             <button class="button cart_quantity-btn" type="button" data-action="increase" data-id="${escapeHTML(normalized.id)}" aria-label="Aumentar cantidad de ${escapeHTML(normalized.name)}" title="Aumentar cantidad de ${escapeHTML(normalized.name)}" ${!canIncrease ? "disabled" : ""}>+</button>
             <button class="button" type="button" data-action="toggle" data-id="${escapeHTML(normalized.id)}" aria-label="${isInCart ? "Eliminar" : "Agregar"} aria-label="Agregar/Quitar ${escapeHTML(normalized.name)}" title="Agregar/Quitar ${escapeHTML(normalized.name)}" ${escapeHTML(normalized.name)}" aria-pressed="${isInCart}">
-              <i class="${isInCart ? "ri-close-line" : "ri-shopping-cart-2-line"}" aria-hidden="true"></i>
+              <i class="${isInCart ? "ri-close-line" : "ri-shopping-cart-2-fill"}" aria-hidden="true"></i>
             </button>
           </div>
         </div>
@@ -83,6 +83,7 @@
     id: product.id,
     name: product.name || "Producto",
     brand: product.brand || "",
+    topic: product.topic || "",
     description: product.description || "",
     image: typeof product.image === "string" ? product.image : "",
     price: parsePrice(product.price),

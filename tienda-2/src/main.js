@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded", async function () {
       const increase = card.querySelector('[data-action="increase"]');
       const quantityEl = card.querySelector("[data-cart-quantity]");
       if (toggle) {
-        toggle.innerHTML = `<i class="${cartItem ? "ri-close-line" : "ri-shopping-cart-2-line"}" aria-hidden="true"></i>`;
+        toggle.innerHTML = `<i class="${cartItem ? "ri-close-line" : "ri-shopping-cart-2-fill"}" aria-hidden="true"></i>`;
         toggle.setAttribute("aria-label", `${cartItem ? "Eliminar" : "Agregar"} ${product.name}`);
         toggle.setAttribute("aria-pressed", String(Boolean(cartItem)));
       }
