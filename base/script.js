@@ -148,7 +148,7 @@ const parsePrice = (value) => {
   if (hasDot) {
     const lastDotIndex = raw.lastIndexOf('.');
     const decimals = raw.slice(lastDotIndex + 1);
-
+000000000000000000000000000000000000000000000000000
     if (decimals.length === 3) {
       // Probablemente miles: 3.200, 3.200.000
       return Number(raw.replace(/\./g, '')) || 0;
@@ -175,7 +175,8 @@ const normalizeProduct = (product) => {
     name: product?.name || 'Producto',
     description: product?.description || '',
     image: imageUrl,
-    tag: product?.tag || product?.category || product?.brand || '',
+    tag: product?.tag || '',
+    topic: product?.topic || '', 
     minCant: Number(product?.minCount || product?.minCant || 1),
     price: parsePrice(product.price || 0),
     stock: Number(product?.stock || 0),
@@ -345,8 +346,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     
     const productList = Array.isArray(payload)
       ? payload
-      : Array.isArray(payload?.products)
-        ? payload.products
+      : Array.isArray(payload?.data)
+        ? payload.data
         : [];
     productsCatalog = productList.map(normalizeProduct);
 

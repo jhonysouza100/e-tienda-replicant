@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Disallow: /checkout/
+Disallow: /payment/success/
+Allow: /
+
+# Host
+Host: https://familiazaragoza.com
+
+# Sitemaps
+Sitemap: https://familiazaragoza.com/sitemap.xml
