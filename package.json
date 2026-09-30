@@ -1,7 +1,7 @@
 {
-  "name": "familiazaragoza-website",
+  "name": "static-website",
   "version": "1.0.0",
-  "description": "Servidor estatico simple en Node.js para el sitio de Familia Zaragoza",
+  "description": "Servidor estatico simple en Node.js para el sitio estático",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

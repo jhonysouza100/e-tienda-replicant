@@ -85,7 +85,7 @@
     brand: product.brand || "",
     topic: product.topic || "",
     description: product.description || "",
-    image: typeof product.image === "string" ? product.image : "",
+    image: typeof product.image === "string" ? product.image : product.image.secure_url,
     price: parsePrice(product.price),
     stock: Number(product.stock) > 0 ? Number(product.stock) : Infinity,
     minCant: Number(product.minCant || product.minCount) > 0

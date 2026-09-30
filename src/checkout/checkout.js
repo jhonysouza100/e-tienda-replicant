@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", () => {
-  const API = "https://restful-api-v4.vercel.app/api/v1";
+  const API_URL = "https://restful-api-v4.vercel.app/api/v1";
   const form = document.getElementById("shipping-form");
   const itemsEl = document.getElementById("checkout-items");
   const totalEl = document.getElementById("checkout-total");
@@ -74,7 +74,7 @@ window.addEventListener("DOMContentLoaded", () => {
     resetDelivery();
     setMessage("Cargando sucursales...");
     try {
-      const response = await fetch(`${API}/shipments/micorreo/agencies?provinceCode=${encodeURIComponent(provinceEl.value)}`);
+      const response = await fetch(`${API_URL}/shipments/micorreo/agencies?provinceCode=${encodeURIComponent(provinceEl.value)}`);
       if (!response.ok) throw new Error("agencies");
       const data = await response.json();
       agencies = (Array.isArray(data) ? data.flat() : []).filter((agency) => agency?.status === "ACTIVE");
@@ -125,7 +125,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const calculateShipment = async () => {
     const { volume, weight } = dimensions();
     const side = Math.max(1, Math.ceil(Math.cbrt(volume)));
-    const response = await fetch(`${API}/shipments/micorreo/rates`, {
+    const response = await fetch(`${API_URL}/shipments/micorreo/rates`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ postalCodeDestination: postalEl.value, dimensions: { weight: Math.ceil(weight), height: side, width: side, length: side } }),
@@ -158,7 +158,7 @@ window.addEventListener("DOMContentLoaded", () => {
         provinceCode: data.get("provinceCode"), postalCodeDestination: data.get("postalCodeDestination"),
       },
     };
-    const response = await fetch(`${API}/orders`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    const response = await fetch(`${API_URL}/orders`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
     if (!response.ok) throw new Error("order");
     const result = await response.json();
     const preferenceId = result.payment?.preference_id;

@@ -4,28 +4,30 @@ const id = params.get("id"); // ej: /src/perfume/?id=123
 
 /*=============== LOAD PRODUCT FROM LOCALSTORAGE ===============*/
 window.addEventListener('DOMContentLoaded', async () => {
+  const API_URL = 'https://restful-api-v4.vercel.app/api/v1/products';
   const pageContainer = document.getElementById('page-container');
 
   // Obtener productos del localStorage
   let products = StoreCart.getProducts();
+  console.log("PRODUCTOS:", products)
 
   if (products.length === 0) {
-    const response = await fetch('/public/static/productos.json');
-    products = (await response.json()).map(StoreCart.normalizeProduct);
+    const response = await fetch(`${API_URL}?tenant_id=1&isActive=true&id=${id}`);
+    data = (await response.json());
+    products = data.data.map(StoreCart.normalizeProduct);
     StoreCart.saveProducts(products);
   }
 
   if (!Array.isArray(products) || products.length === 0) {
     console.error('No hay productos en localStorage');
     if (pageContainer) {
-      pageContainer.innerHTML = `<p>No hay productos disponibles.</p>`;
+      pageContainer.innerHTML = `<p>El producto NO esta disponible.</p>`;
     }
     return;
   }
 
   // Buscar el producto por ID (asegúrate que los IDs coincidan en tipo)
   const product = products.find(p => String(p.id) === String(id));
-
   if (!product) {
     console.warn('Producto no encontrado con ID:', id);
     if (pageContainer) {
@@ -34,17 +36,16 @@ window.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  const normalized = StoreCart.normalizeProduct(product);
-  const item = StoreCart.getCart().find((cartItem) => String(cartItem.id) === String(normalized.id));
+  const item = StoreCart.getCart().find((cartItem) => String(cartItem.id) === String(product.id));
   const quantity = item?.quantity || 0;
-  const canIncrease = !item || quantity + normalized.minCant <= normalized.stock;
-  const canDecrease = quantity > normalized.minCant;
+  const canIncrease = !item || quantity + product.minCant <= product.stock;
+  const canDecrease = quantity > product.minCant;
 
   // Renderizar el componente con los datos del producto
   if (pageContainer) {
     pageContainer.innerHTML = `
-      <div class="perfume_data" data-product-card data-id="${normalized.id}">
-        <h2 class="perfume_subtitle">${normalized.brand || 'Marca desconocida'}</h2>
+      <div class="perfume_data" data-product-card data-id="${product.id}">
+        <h2 class="perfume_subtitle">${product.brand || 'Marca desconocida'}</h2>
         <h1 class="perfume_title">
           ${product.name || 'Sin nombre'}
         </h1>
@@ -52,9 +53,9 @@ window.addEventListener('DOMContentLoaded', async () => {
           ${product.description || 'Sin descripción disponible.'}
         </p>
         <div class="product_card-controls" data-cart-controls>
-          <button class="button cart_quantity-btn" type="button" data-action="decrease" data-id="${normalized.id}" aria-label="Disminuir cantidad de ${normalized.name}" title="Disminuir cantidad de ${normalized.name}" ${!canDecrease ? "disabled" : ""}>-</button>
+          <button class="button cart_quantity-btn" type="button" data-action="decrease" data-id="${product.id}" aria-label="Disminuir cantidad de ${product.name}" title="Disminuir cantidad de ${product.name}" ${!canDecrease ? "disabled" : ""}>-</button>
           <span data-cart-quantity>${quantity}</span>
-          <button class="button cart_quantity-btn" type="button" data-action="increase" data-id="${normalized.id}" aria-label="Aumentar cantidad de ${normalized.name}" title="Aumentar cantidad de ${normalized.name}" ${!canIncrease ? "disabled" : ""}>+</button>
+          <button class="button cart_quantity-btn" type="button" data-action="increase" data-id="${product.id}" aria-label="Aumentar cantidad de ${product.name}" title="Aumentar cantidad de ${product.name}" ${!canIncrease ? "disabled" : ""}>+</button>
           <button type="button" class="perfume_button button" data-id="${product.id}" id="perfume-button" title="Agregar al carrito">
             COMPRAR AHORA
             <i class="ri-shopping-cart-line"></i>

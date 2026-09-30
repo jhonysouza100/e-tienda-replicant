@@ -1,4 +1,5 @@
 window.addEventListener("DOMContentLoaded", async function () {
+  const API_URL = 'https://restful-api-v4.vercel.app/api/v1/products';
   /*=============== LOAD DATA ===============*/
   /** ✅ FLAG: Solo se ejecuta en la ruta principal */
   const currentPath = window.location.pathname;
@@ -11,12 +12,12 @@ window.addEventListener("DOMContentLoaded", async function () {
 
     // Ejecuta ambos fetch en paralelo
     Promise.all([
-      fetch("/public/static/popular.json").then((res) => {
+      fetch(`${API_URL}?tenant_id=1&isActive=true&limit=6`).then((res) => {
         if (!res.ok)
           throw new Error("Error fetching products.json: " + res.status);
         return res.json();
       }),
-      fetch("/public/static/news.json").then((res) => {
+      fetch(`${API_URL}?tenant_id=1&isActive=true&limit=6`).then((res) => {
         if (!res.ok) throw new Error("Error fetching news.json: " + res.status);
         return res.json();
       }),
@@ -25,22 +26,16 @@ window.addEventListener("DOMContentLoaded", async function () {
         // Combinar ambos arrays sin repetir los id de los objetos
         const productos = [
           ...new Map(
-            [...popularData, ...newsData].map((item) => [item.id, item]),
+            [...popularData.data, ...newsData.data].map((item) => [item.id, item]),
           ).values(),
-        ].map(StoreCart.normalizeProduct);
-
+        ];
+        console.log("PRODUCTOS:", productos);
         // Guardar en localStorage
         StoreCart.saveProducts(productos);
 
-        /*
-      const apiResponse = await fetch('https://restful-api-v4.vercel.app/api/v1/products?tenant_id=1&isActive=true&topic=popular');
-      const apiProducts = await apiResponse.json();
-      StoreCart.saveProducts(apiProducts.products || apiProducts);
-      */
-
         // Renderizar POPULAR
-        if (popularContainer && Array.isArray(popularData)) {
-          popularContainer.innerHTML = popularData
+        if (popularContainer && Array.isArray(popularData.data)) {
+          popularContainer.innerHTML = popularData.data
             .map((product) => `<div class="swiper-slide">${StoreCart.renderProductCard(product)}</div>`)
             .join("");
 
@@ -59,8 +54,8 @@ window.addEventListener("DOMContentLoaded", async function () {
         }
 
         // Renderizar NEWS
-        if (newsContainer && Array.isArray(newsData)) {
-          newsContainer.innerHTML = newsData
+        if (newsContainer && Array.isArray(newsData.data)) {
+          newsContainer.innerHTML = newsData.data
             .map((product) => `<div class="swiper-slide">${StoreCart.renderProductCard(product)}</div>`)
             .join("");
 

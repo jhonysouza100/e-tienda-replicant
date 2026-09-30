@@ -27,11 +27,12 @@
   
   /*=============== LOAD PRODUCTS ===============*/
 window.addEventListener('DOMContentLoaded', async function() {
+  const API_URL = 'https://restful-api-v4.vercel.app/api/v1/products';
   try {
-    const response = await fetch('/public/static/productos.json');
+    const response = await fetch(`${API_URL}?tenant_id=1&isActive=true`);
     if (response.ok) {
-      const data = await response.json();
-      const products = data.map(StoreCart.normalizeProduct);
+      const data = (await response.json());
+      const products = data.data.map(StoreCart.normalizeProduct);
       StoreCart.saveProducts(products);
 
       /*
@@ -42,7 +43,7 @@ window.addEventListener('DOMContentLoaded', async function() {
 
       // Render product cards
       const pageContainer = document.getElementById('page-container');
-      if (pageContainer && Array.isArray(data)) {
+      if (pageContainer && Array.isArray(data.data)) {
         pageContainer.innerHTML = products.map((product) => StoreCart.renderProductCard(product)).join('');
       }
     } else {
