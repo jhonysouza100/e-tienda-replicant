@@ -53,10 +53,24 @@
         <div class="product_footer">
           <span class="product_price">${formatPrice(normalized.price)}</span>
           <div class="product_card-controls" data-cart-controls>
-            <button class="button cart_quantity-btn" type="button" data-action="decrease" data-id="${escapeHTML(normalized.id)}" aria-label="Disminuir cantidad de ${escapeHTML(normalized.name)}" title="Disminuir cantidad de ${escapeHTML(normalized.name)}" ${!canDecrease ? "disabled" : ""}>-</button>
+            <button class="button cart_quantity-btn" type="button" 
+              ${!canDecrease ? "disabled" : ""}
+              data-action="decrease" 
+              data-id="${escapeHTML(normalized.id)}"
+              aria-label="Disminuir cantidad de ${escapeHTML(normalized.name)}" title="Disminuir cantidad de ${escapeHTML(normalized.name)}"
+            >-</button>
             <span data-cart-quantity>${quantity}</span>
-            <button class="button cart_quantity-btn" type="button" data-action="increase" data-id="${escapeHTML(normalized.id)}" aria-label="Aumentar cantidad de ${escapeHTML(normalized.name)}" title="Aumentar cantidad de ${escapeHTML(normalized.name)}" ${!canIncrease ? "disabled" : ""}>+</button>
-            <button class="button" type="button" data-action="toggle" data-id="${escapeHTML(normalized.id)}" aria-label="${isInCart ? "Eliminar" : "Agregar"} aria-label="Agregar/Quitar ${escapeHTML(normalized.name)}" title="Agregar/Quitar ${escapeHTML(normalized.name)}" ${escapeHTML(normalized.name)}" aria-pressed="${isInCart}">
+            <button class="button cart_quantity-btn" type="button" 
+              ${!canIncrease ? "disabled" : ""}
+              data-action="increase" 
+              data-id="${escapeHTML(normalized.id)}"
+              aria-label="Aumentar cantidad de ${escapeHTML(normalized.name)}" title="Aumentar cantidad de ${escapeHTML(normalized.name)}" 
+            >+</button>
+            <button class="button" type="button" 
+              aria-pressed="${isInCart}"
+              data-action="toggle" 
+              data-id="${escapeHTML(normalized.id)}"
+              aria-label="${isInCart ? "Eliminar" : "Agregar al carrito"}" title="${isInCart ? "Eliminar" : "Agregar al carrito"}">
               <i class="${isInCart ? "ri-close-line" : "ri-shopping-cart-2-fill"}" aria-hidden="true"></i>
             </button>
           </div>
