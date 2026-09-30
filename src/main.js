@@ -124,7 +124,7 @@ window.addEventListener("DOMContentLoaded", async function () {
     }
   } else {
     const firstLink = document.querySelector(".nav_menu a");
-    if (firstLink && window.location.pathname === "/src") {
+    if (firstLink && (window.location.pathname === "/src" || window.location.pathname === "/src#")) {
       firstLink.classList.add("active-link");
     }
   }
@@ -137,7 +137,7 @@ window.addEventListener("DOMContentLoaded", async function () {
       e.preventDefault();
       const inputValue = document.getElementById("header-input").value.trim();
       if (inputValue) {
-        window.location.href = `/src/productos/?name=${encodeURIComponent(inputValue)}&page=1`;
+        window.location.href = `/src/productos/?name=${encodeURIComponent(inputValue)}`;
       }
     });
 

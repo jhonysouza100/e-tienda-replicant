@@ -9,10 +9,10 @@
   // Si existe la query, mostrarla en el título
   if (topicQuery && pageTitle || nameQuery && pageTitle) {
     switch (topicQuery) {
-      case "men":
+      case "hombre":
         pageTitle.textContent = "Fragancias Masculinas";
         break;
-      case "women":
+      case "mujer":
         pageTitle.textContent = "Fragancias Femeninas";
         break;
       case "popular":
@@ -29,17 +29,16 @@
 window.addEventListener('DOMContentLoaded', async function() {
   const API_URL = 'https://restful-api-v4.vercel.app/api/v1/products';
   try {
-    const response = await fetch(`${API_URL}?tenant_id=1&isActive=true`);
+    let response = [];
+    if(nameQuery) {
+      response = await fetch(`${API_URL}?tenant_id=1&isActive=true&name=${nameQuery}`);
+    } else {
+      response = await fetch(`${API_URL}?tenant_id=1&isActive=true&topic=${topicQuery}`);
+    }
     if (response.ok) {
       const data = (await response.json());
       const products = data.data.map(StoreCart.normalizeProduct);
       StoreCart.saveProducts(products);
-
-      /*
-      const apiResponse = await fetch('https://restful-api-v4.vercel.app/api/v1/products?tenant_id=2');
-      const apiPayload = await apiResponse.json();
-      StoreCart.saveProducts(apiPayload.products || apiPayload);
-      */
 
       // Render product cards
       const pageContainer = document.getElementById('page-container');

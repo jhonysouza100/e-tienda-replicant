@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded", async function () {
   /*=============== LOAD DATA ===============*/
   /** ✅ FLAG: Solo se ejecuta en la ruta principal */
   const currentPath = window.location.pathname;
-  const shouldLoadHome = currentPath === "/src/" || currentPath === "/src";
+  const shouldLoadHome = currentPath === "/src/" || currentPath === "/src" || currentPath === "/src#";
 
   if (shouldLoadHome) {
     /*=============== LOAD POPULAR & NEWS ===============*/
@@ -12,12 +12,12 @@ window.addEventListener("DOMContentLoaded", async function () {
 
     // Ejecuta ambos fetch en paralelo
     Promise.all([
-      fetch(`${API_URL}?tenant_id=1&isActive=true&limit=6`).then((res) => {
+      fetch(`${API_URL}?tenant_id=1&isActive=true&limit=6&topic=popular`).then((res) => {
         if (!res.ok)
           throw new Error("Error fetching products.json: " + res.status);
         return res.json();
       }),
-      fetch(`${API_URL}?tenant_id=1&isActive=true&limit=6`).then((res) => {
+      fetch(`${API_URL}?tenant_id=1&isActive=true&limit=6&topic=new`).then((res) => {
         if (!res.ok) throw new Error("Error fetching news.json: " + res.status);
         return res.json();
       }),
@@ -29,7 +29,7 @@ window.addEventListener("DOMContentLoaded", async function () {
             [...popularData.data, ...newsData.data].map((item) => [item.id, item]),
           ).values(),
         ];
-        console.log("PRODUCTOS:", productos);
+        
         // Guardar en localStorage
         StoreCart.saveProducts(productos);
 

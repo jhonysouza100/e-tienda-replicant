@@ -1,7 +1,7 @@
 {
   "name": "static-website",
   "version": "1.0.0",
-  "description": "Servidor estatico simple en Node.js para el sitio estático",
+  "description": "Servidor estático simple en Node.js para el sitio estático",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

@@ -120,6 +120,6 @@ const server = http.createServer((req, res) => {
 })
 
 server.listen(PORT, HOST, () => {
-  console.log(`[v0] Servidor estatico corriendo en http://${HOST}:${PORT}`)
+  console.log(`[v0] Servidor estático corriendo en http://${HOST}:${PORT}`)
   console.log(`[v0] Sirviendo "src" en / y "public" en /public/`)
 })

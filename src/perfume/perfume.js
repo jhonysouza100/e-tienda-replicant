@@ -39,7 +39,8 @@ window.addEventListener('DOMContentLoaded', async () => {
   const item = StoreCart.getCart().find((cartItem) => String(cartItem.id) === String(product.id));
   const quantity = item?.quantity || 0;
   const canIncrease = !item || quantity + product.minCant <= product.stock;
-  const canDecrease = quantity > product.minCant;
+  // Decrementar desde la cantidad mínima quita el producto del carrito.
+  const canDecrease = Boolean(item);
 
   // Renderizar el componente con los datos del producto
   if (pageContainer) {

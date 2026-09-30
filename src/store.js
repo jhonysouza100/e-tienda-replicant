@@ -64,7 +64,6 @@
       </article>`;
   };
   
-
   const readArray = (key) => {
     try {
       const value = JSON.parse(localStorage.getItem(key) || "[]");
